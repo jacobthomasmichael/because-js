@@ -1,0 +1,19 @@
+{
+  "name": "because-js",
+  "version": "0.1.0",
+  "description": "Enrich JS exceptions with causal context at throw time",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node --test tests/buffer.test.js tests/patterns.test.js",
+    "example:silent": "node examples/silent_failure.js",
+    "example:retry": "node examples/retry_storm.js",
+    "example:pool": "node examples/pool_exhaustion.js"
+  },
+  "license": "MIT"
+}
