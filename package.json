@@ -2,9 +2,34 @@
   "name": "because-js",
   "version": "0.1.0",
   "description": "Enrich JS exceptions with causal context at throw time",
+  "author": "Jacob Wagner <jacobthomasmichael@gmail.com>",
+  "license": "MIT",
   "type": "module",
   "exports": {
     ".": "./src/index.js"
+  },
+  "files": [
+    "src/",
+    "examples/",
+    "LICENSE"
+  ],
+  "keywords": [
+    "error",
+    "exception",
+    "debugging",
+    "observability",
+    "root-cause",
+    "diagnostics",
+    "async",
+    "tracing"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jacobthomasmichael/because-js.git"
+  },
+  "homepage": "https://github.com/jacobthomasmichael/because-js#readme",
+  "bugs": {
+    "url": "https://github.com/jacobthomasmichael/because-js/issues"
   },
   "engines": {
     "node": ">=18"
@@ -14,6 +39,5 @@
     "example:silent": "node examples/silent_failure.js",
     "example:retry": "node examples/retry_storm.js",
     "example:pool": "node examples/pool_exhaustion.js"
-  },
-  "license": "MIT"
+  }
 }
