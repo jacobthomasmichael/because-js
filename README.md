@@ -39,7 +39,7 @@ You see the pattern. A naive retry loop hammering a degraded upstream. You know 
 ## Install
 
 ```bash
-npm install because-js
+npm install @jacobthomasmichael/because-js
 ```
 
 Requires Node.js 18+.
@@ -49,7 +49,7 @@ Requires Node.js 18+.
 ## Zero-config setup
 
 ```js
-import { install } from 'because-js';
+import { install } from '@jacobthomasmichael/because-js';
 
 install();
 ```
@@ -63,7 +63,7 @@ That's it. `because` patches `globalThis.fetch` and `node:http`/`node:https`, in
 `because` uses `AsyncLocalStorage` to isolate ring buffers per async context — concurrent requests don't bleed into each other. Wrap your request handler (or any logical unit of work) in `run()`:
 
 ```js
-import { run } from 'because-js';
+import { run } from '@jacobthomasmichael/because-js';
 
 // Express
 app.use((req, res, next) => {
@@ -85,7 +85,7 @@ Operations recorded inside a `run()` are invisible to all other concurrent `run(
 Silently caught errors are often the real cause of a downstream crash. Use `recordSwallowed()` to make them visible to `because`:
 
 ```js
-import { recordSwallowed } from 'because-js';
+import { recordSwallowed } from '@jacobthomasmichael/because-js';
 
 async function getUser(userId) {
   try {
@@ -106,7 +106,7 @@ When a downstream `TypeError: Cannot read properties of null` fires, `because` s
 `install()` handles uncaught errors automatically. For caught exceptions you want to enrich and forward:
 
 ```js
-import { enrich, formatContextChain } from 'because-js';
+import { enrich, formatContextChain } from '@jacobthomasmichael/because-js';
 
 try {
   await processOrder(orderId);
@@ -165,7 +165,7 @@ Each pattern is a small, independently testable function. Output always uses hed
 ## Low-level API
 
 ```js
-import { run, record, recordSwallowed, getTimeline, getSwallowed, enrich, formatContextChain } from 'because-js';
+import { run, record, recordSwallowed, getTimeline, getSwallowed, enrich, formatContextChain } from '@jacobthomasmichael/because-js';
 
 // Wrap a unit of async work in an isolated context
 await run(async () => { ... });
