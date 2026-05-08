@@ -1,10 +1,18 @@
 # because-js
 
-**Stack traces show symptoms. `because` shows causes.**
+**Your app already knows why it crashed. Now it can tell you.**
 
-Your error tracker fires. The stack trace points to line 84 of `checkout.js`. You open the file, stare at the code, and start the slow walk backwards through logs, traces, and recent deploys — trying to reconstruct what actually happened.
+Every error tracker shows you *where* software broke. Almost none tell you *why*.
 
-`because` does that reconstruction for you. It captures a rolling timeline of recent operations per async context, matches known failure patterns at throw time, and attaches a causal chain directly to the error — before you open a single log file.
+When a production incident fires, the stack trace points at the crash site. Then the real work starts — digging through logs, correlating metrics, walking backwards through recent deploys to reconstruct what actually caused it. That investigation is where engineering hours disappear.
+
+`because` is an open-source Node.js library that closes that gap. It runs silently inside your application, keeping a rolling record of recent operations — HTTP calls, database queries, cache lookups — in a lightweight in-memory buffer. When an exception is thrown, it grabs that record, matches it against known failure patterns, and attaches a plain-English causal chain directly to the error. Before it ever hits your logs.
+
+One of `because`'s most valuable features surfaces something error trackers almost never show: exceptions that were *caught and quietly discarded* upstream. These silent failures are one of the most common causes of confusing incidents — an error gets swallowed somewhere, `null` propagates invisibly, and something crashes three function calls later at a site that looks completely unrelated. `because` makes that chain visible.
+
+Drop-in setup, no lock-in. One line gets you started. Context attaches to the exception object itself, so it flows naturally into Sentry, Datadog, structured logs, or OpenTelemetry — wherever your errors already go.
+
+Also available for Python: [`because-py`](https://pypi.org/project/because-py/)
 
 ---
 
